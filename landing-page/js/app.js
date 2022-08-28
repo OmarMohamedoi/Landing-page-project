@@ -22,15 +22,13 @@
  * Define Global Variables
  * 
 */
-
-
+let sections1= document.querySelectorAll('section');
+let sectionslist1= document.querySelector('#navbar__list');
 /**
  * End Global Variables
  * Start Helper Functions
  * 
 */
-const ula=document.querySelector('#navbar__list');
-const sectionat=Array.from(document.querySelectorAll('section'));
 
 
 /**
@@ -41,34 +39,33 @@ const sectionat=Array.from(document.querySelectorAll('section'));
 
 // build the nav
 //built the nav using forEach()
-sectionat.forEach((section)=>{
- Name=section.getAttribute('data-nav');
- Link=section.getAttribute('id');
- const elem=document.createElement('li');
- elem.innerHTML=`<a class='menu__link' href=#${Link}>${Name}</a>`;
- ula.appendChild(elem);
+sections1.forEach(section => {
+    let element =document.createElement('li');
+    let anchor=document.createElement('a');
+    anchor.classList.add('menu__link')
+    anchorlink=section.getAttribute('id');
+    anchor.href="#" + anchorlink;
+    let name=section.getAttribute('data-nav');
+    anchor.textContent=name;
+    element.appendChild(anchor);
+    sectionslist1.appendChild(element);
 });
-
 // Add class 'active' to section when near top of viewport
 //checking if class is in view and if it's in view setting it as 'active'
-function inViewPort(element){
-let Port=element.getBoundingClientRect();
-return (Port.top>=0 && Port.top<300);
-};
-function activeClass(){
-sectionat.forEach((section)=>{
-    if(inViewPort(section)){
-    if(!section.classList.contains('your-active-class')){
-        section.classList.add('your-active-class');  
-    }  
+function checker(){
+    sections1.forEach(section => {
+        let area = section.getBoundingClientRect();
+        if(area.top >=0&& port.top<300){
+            if(!section.classList.contains('your-active-class')){
+                section.classList.add('your-active-class');
+            }
+        }
+        else {
+            section.classList.remove('your-active-class');
+        }
+    })
 }
-    else{
-        section.classList.remove('your-active-class');
-        
-    }
-})
-};
-document.addEventListener('scroll',activeClass);
+document.addEventListener('scroll', checker);
 // Scroll to anchor ID using scrollTO event
 
 
@@ -84,8 +81,9 @@ document.addEventListener('scroll',activeClass);
 
 // Set sections as active
 //checking if the section active is equal to the link for setting the link as active
+
 window.onscroll = function () {
-    for (let section of sectionat) {
+    for (let section of sections1) {
       const sectionPos = section.getBoundingClientRect();
       let sectionTitle = section.getAttribute("data-nav");
   
@@ -100,5 +98,3 @@ window.onscroll = function () {
       }
     }
   };
-
-
