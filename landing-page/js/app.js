@@ -55,7 +55,7 @@ sections1.forEach(section => {
 function checker(){
     sections1.forEach(section => {
         let area = section.getBoundingClientRect();
-        if(area.top >=0&& port.top<300){
+        if(area.top >=0&& area.top<300){
             if(!section.classList.contains('your-active-class')){
                 section.classList.add('your-active-class');
             }
