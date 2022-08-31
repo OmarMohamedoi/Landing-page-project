@@ -88,6 +88,7 @@ section {
     font-weight: bold;
     text-decoration: none;
     color: rgb(255, 255, 255);
+    cursor: pointer;
 }
 
 .navbar__menu .menu__link:hover {
